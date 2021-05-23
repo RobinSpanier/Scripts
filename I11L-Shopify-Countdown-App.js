@@ -1,5 +1,4 @@
-alert(window.location.href);
-alert(working);
+alert("working");
 console.log(location.href);
 let note = document.querySelector('body');
 note.insertAdjacentHTML(
