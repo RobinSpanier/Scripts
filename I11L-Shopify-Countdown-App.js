@@ -1,3 +1,4 @@
+alert(window.location.href);
 let note = document.querySelector('body');
 note.insertAdjacentHTML(
 "afterbegin", 
