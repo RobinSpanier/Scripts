@@ -239,7 +239,25 @@ const config = {
   buyNowBtnBackgroundTemplate: null
 }
 
+let shop = "";
+shop = Shopify.shop;
+fetch('https://firestore.googleapis.com/v1/projects/i11l-software/databases/(default)/documents/Countdown-Configuration/"'+shop+'"')
+  .then(response => response.json())
+  .then(data => {
+    applyConfigurationForCountdownApp(data);
+    applyConfigurations();
+  });
 
+function applyConfigurationForCountdownApp(firebaseResponse){
+let fieldKeys = Object.keys(firebaseResponse.fields);
+let newConfigArrObj = [];
+fieldKeys.forEach(field => {
+  newConfigArrObj.push(
+      {[field]: Object.values(firebaseResponse.fields[field])[0]}
+    )
+});
+config = Object.assign({}, config, ...newConfigArrObj);
+}
 
 const year = new Date().getFullYear();
 let endTime = config.endTime ? config.endTime : new Date(year, 5, 4).getTime();
