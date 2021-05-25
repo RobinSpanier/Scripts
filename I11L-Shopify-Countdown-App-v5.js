@@ -20,7 +20,7 @@ note.insertAdjacentHTML(
         width: 100%;
     }
     #Timer {
-        display: grid;
+        display: none;
         grid-template-columns: 1fr max-content 1fr;
         color: #f6f4f3;
         text-align: center;
@@ -205,7 +205,7 @@ note.insertAdjacentHTML(
   </style>
 `
 )
-const config = {
+let config = {
   endTime: null,
   sizeSchema: 1,
   positionSchema: 0,
@@ -241,11 +241,15 @@ const config = {
 
 let shop = "";
 shop = Shopify.shop;
+console.log(shop);
 fetch('https://firestore.googleapis.com/v1/projects/i11l-software/databases/(default)/documents/Countdown-Configuration/"'+shop+'"')
   .then(response => response.json())
   .then(data => {
+    console.log(data);
     applyConfigurationForCountdownApp(data);
     applyConfigurations();
+    TimerRef.style.display = "grid";
+    console.log("configurations", config);
   });
 
 function applyConfigurationForCountdownApp(firebaseResponse){
