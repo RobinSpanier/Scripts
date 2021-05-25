@@ -361,6 +361,7 @@ function applySizeSchema() {
   if (config.sizeSchema != 0) {
     switch (config.sizeSchema) {
       case 1:
+        alert("hello from 1");
         //tiny size
         Array.from(allCountingNumbersRef).map(note => note.style.fontSize = "24px");
         Array.from(allCountingNumbersRef).map(note => note.style.lineHeight = "30px");
@@ -372,6 +373,7 @@ function applySizeSchema() {
 
         break;
       case 2:
+        alert("hello from 2");
         //small size
         Array.from(allCountingNumbersRef).map(note => note.style.fontSize = "30px");
         Array.from(allCountingNumbersRef).map(note => note.style.lineHeight = "38px");
@@ -381,6 +383,7 @@ function applySizeSchema() {
         buyNowButtonTextRef.style.height = "70px"
         break;
       case 3:
+        alert("hello from 3");
         Array.from(allCountingNumbersRef).map(note => note.style.fontSize = "44px");
         Array.from(allCountingNumbersRef).map(note => note.style.lineHeight = "56px");
         Array.from(allCountingNumbersRef).map(note => note.nextSibling.style.fontSize = "18px");
