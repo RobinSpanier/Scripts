@@ -242,7 +242,7 @@ let config = {
 let shop = "";
 shop = Shopify.shop;
 console.log(shop);
-fetch('https://firestore.googleapis.com/v1/projects/i11l-software/databases/(default)/documents/Countdown-Configuration/"'+shop+'"')
+fetch('https://firestore.googleapis.com/v1/projects/i11l-software/databases/(default)/documents/Countdown-Configuration/'+shop)
   .then(response => response.json())
   .then(data => {
     console.log(data);
