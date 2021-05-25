@@ -247,8 +247,9 @@ fetch('https://firestore.googleapis.com/v1/projects/i11l-software/databases/(def
   .then(data => {
     console.log(data);
     applyConfigurationForCountdownApp(data);
-    applyConfigurations();
     TimerRef.style.display = "grid";
+    applyConfigurations();
+    
     console.log("configurations", config);
   });
 
