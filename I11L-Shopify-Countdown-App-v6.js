@@ -295,7 +295,7 @@ const secondsBackgroundRef = document.querySelector('.seconds');
 const buyNowButtonBackgroundRef = document.querySelector('.buyNowBtn');
 const allCountingNumbersRef = document.querySelectorAll('.numbers');
 
-applyConfigurations();
+
 
 let Timer = setInterval(function () {
   today = new Date().getTime();
