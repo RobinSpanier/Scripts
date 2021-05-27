@@ -207,7 +207,7 @@ note.insertAdjacentHTML(
 )
 let config = {
   endTime: null,
-  sizeSchema: 1,
+  sizeSchema: "1",
   positionSchema: 0,
   messageText: "a new special offer!",
   buyNowBtnText: "buy now",
@@ -360,8 +360,9 @@ function applyTextColors() {
 
 function applySizeSchema() {
   if (config.sizeSchema != 0) {
+    console.log("config from v9",config);
     switch (config.sizeSchema) {
-      case 1:
+      case "1":
         alert("hello from 1");
         //tiny size
         Array.from(allCountingNumbersRef).map(note => note.style.fontSize = "24px");
@@ -373,7 +374,7 @@ function applySizeSchema() {
         buyNowButtonTextRef.style.height = "63px"
 
         break;
-      case 2:
+      case "2":
         alert("hello from 2");
         //small size
         Array.from(allCountingNumbersRef).map(note => note.style.fontSize = "30px");
@@ -383,7 +384,7 @@ function applySizeSchema() {
         buyNowButtonTextRef.style.fontSize = "20px"
         buyNowButtonTextRef.style.height = "70px"
         break;
-      case 3:
+      case "3":
         alert("hello from 3");
         Array.from(allCountingNumbersRef).map(note => note.style.fontSize = "44px");
         Array.from(allCountingNumbersRef).map(note => note.style.lineHeight = "56px");
