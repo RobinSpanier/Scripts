@@ -241,16 +241,13 @@ let config = {
 
 let shop = "";
 shop = Shopify.shop;
-console.log(shop);
 fetch('https://firestore.googleapis.com/v1/projects/i11l-software/databases/(default)/documents/Countdown-Configuration/'+shop)
   .then(response => response.json())
   .then(data => {
-    console.log(data);
     applyConfigurationForCountdownApp(data);
     TimerRef.style.display = "grid";
     applyConfigurations();
     
-    console.log("configurations", config);
   });
 
 function applyConfigurationForCountdownApp(firebaseResponse){
@@ -264,17 +261,10 @@ fieldKeys.forEach(field => {
 config = Object.assign({}, config, ...newConfigArrObj);
 }
 
-const year = new Date().getFullYear();
-let endTime = config.endTime ? config.endTime : new Date(year, 5, 4).getTime();
-let today = new Date().getTime();
-let diff = endTime - today;
-let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
 
 document.getElementById("Timer").insertAdjacentHTML('beforeend', "<div class='message' id='Message'>Special offer ends soon!</div>");
-document.getElementById("Timer").insertAdjacentHTML('beforeend', "<div><div class='days'><div class='numbers' id='TimerDays'>" + days + "</div><span id='DaysText'>days</span></div><div class='hours'><div class='numbers' id='TimerHours'>" + hours + "</div><span id='HoursText'>hours</span></div><div class='minutes'><div class='numbers'  id='TimerMinutes'>" + minutes + "</div><span id='MinutesText'>minutes</span></div><div class='seconds'><div class='numbers' id='TimerSeconds'>" + seconds + "</div><span id='SecondsText'>seconds</span></div></div>");
+document.getElementById("Timer").insertAdjacentHTML('beforeend', "<div><div class='days'><div class='numbers' id='TimerDays'>0</div><span id='DaysText'>days</span></div><div class='hours'><div class='numbers' id='TimerHours'>0</div><span id='HoursText'>hours</span></div><div class='minutes'><div class='numbers'  id='TimerMinutes'>0</div><span id='MinutesText'>minutes</span></div><div class='seconds'><div class='numbers' id='TimerSeconds'>0</div><span id='SecondsText'>seconds</span></div></div>");
 document.getElementById("Timer").insertAdjacentHTML('beforeend', "<div><button class='buyNowBtn animated tada' id='BuyNowButton'>Buy Now</button></div>");
 
 const containerRef = document.querySelector('.container');
@@ -298,26 +288,14 @@ const allCountingNumbersRef = document.querySelectorAll('.numbers');
 
 
 
-let Timer = setInterval(function () {
-  today = new Date().getTime();
-  diff = endTime - today;
-  days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  seconds = Math.floor((diff % (1000 * 60)) / 1000);
-  daysCountingTextRef.innerHTML = days;
-  hoursCountingTextRef.innerHTML = hours;
-  minutesCountingTextRef.innerHTML = minutes;
-  secondsCountingTextRef.innerHTML = seconds;
 
-
-}, 1000);
 
 function applyConfigurations() {
   applyBackgroundColors();
   applyTextColors();
   applyText();
   applySizeSchema();
+  startTimer();
 }
 
 function applyText() {
@@ -360,10 +338,8 @@ function applyTextColors() {
 
 function applySizeSchema() {
   if (config.sizeSchema != 0) {
-    console.log("config from v9",config);
     switch (config.sizeSchema) {
       case "1":
-        alert("hello from 1");
         //tiny size
         Array.from(allCountingNumbersRef).map(note => note.style.fontSize = "24px");
         Array.from(allCountingNumbersRef).map(note => note.style.lineHeight = "30px");
@@ -375,7 +351,6 @@ function applySizeSchema() {
 
         break;
       case "2":
-        alert("hello from 2");
         //small size
         Array.from(allCountingNumbersRef).map(note => note.style.fontSize = "30px");
         Array.from(allCountingNumbersRef).map(note => note.style.lineHeight = "38px");
@@ -385,7 +360,6 @@ function applySizeSchema() {
         buyNowButtonTextRef.style.height = "70px"
         break;
       case "3":
-        alert("hello from 3");
         Array.from(allCountingNumbersRef).map(note => note.style.fontSize = "44px");
         Array.from(allCountingNumbersRef).map(note => note.style.lineHeight = "56px");
         Array.from(allCountingNumbersRef).map(note => note.nextSibling.style.fontSize = "18px");
@@ -400,4 +374,30 @@ function applySizeSchema() {
         return -1;
     }
   }
+}
+function startTimer(){
+  setInterval(function () {
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth();
+    const day = new Date().getDay();
+  
+    let endTime = config.endTime ? config.endTime : new Date(year, month, day+1).getTime();
+  
+    let today = new Date().getTime();
+    let diff = endTime - today;
+    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    today = new Date().getTime();
+    diff = endTime - today;
+    days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    daysCountingTextRef.innerHTML = days;
+    hoursCountingTextRef.innerHTML = hours;
+    minutesCountingTextRef.innerHTML = minutes;
+    secondsCountingTextRef.innerHTML = seconds;
+  }, 1000);
 }
