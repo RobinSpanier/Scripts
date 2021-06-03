@@ -73,7 +73,6 @@ note.insertAdjacentHTML(
         border: none;
         color: inherit;
         background: none;
-        cursor: pointer;
         padding: 16px 32px;
         display: inline-block;
         text-transform: uppercase;
@@ -225,7 +224,7 @@ let config = {
   hoursLabelTextColor: "red",
   minutesLabelTextColor: "red",
   secondsLabelTextColor: "red",
-  backgroundColor: "red",
+  containerBackgroundColor: "red",
   daysBackgroundColor: "yellow",
   hoursBackgroundColor: "yellow",
   minutesBackgroundColor: "yellow",
@@ -318,8 +317,7 @@ function applyBackgroundColors() {
   config.secondsBackgroundColor ? secondsBackgroundRef.style.backgroundColor = config.secondsBackgroundColor : null;
   config.buyNowBtnBackgroundTemplate ? buyNowButtonBackgroundRef.style.background = config.buyNowBtnBackgroundTemplate : null;
   config.buyNowBtnBackgroundColor ? buyNowButtonBackgroundRef.style.backgroundColor = config.buyNowBtnBackgroundColor : null;
-  config.backgroundTemplate ? containerRef.style.background = config.backgroundTemplate : null;
-  config.backgroundColor ? containerRef.style.backgroundColor = config.backgroundColor : null;
+  config.backgroundTemplate ? containerRef.style.background = config.containerBackgroundColor : null;
 
 }
 
