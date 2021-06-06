@@ -224,7 +224,7 @@ let config = {
   hoursLabelTextColor: "red",
   minutesLabelTextColor: "red",
   secondsLabelTextColor: "red",
-  containerBackgroundColor: "red",
+  backgroundColor: "red",
   daysBackgroundColor: "yellow",
   hoursBackgroundColor: "yellow",
   minutesBackgroundColor: "yellow",
@@ -328,7 +328,7 @@ function applyBackgroundColors() {
   config.secondsBackgroundColor ? secondsBackgroundRef.style.backgroundColor = config.secondsBackgroundColor : null;
   config.buyNowBtnBackgroundTemplate ? buyNowButtonBackgroundRef.style.background = config.buyNowBtnBackgroundTemplate : null;
   config.buyNowBtnBackgroundColor ? buyNowButtonBackgroundRef.style.backgroundColor = config.buyNowBtnBackgroundColor : null;
-  config.backgroundTemplate ? containerRef.style.background = config.containerBackgroundColor : null;
+  config.backgroundTemplate ? containerRef.style.background = config.backgroundColor : null;
 
 }
 
@@ -386,7 +386,6 @@ function applySizeSchema() {
 }
 function startTimer(){
   setInterval(function () {
-    decideIfCountdownShouldBeShownOrNot();
     const year = new Date().getFullYear();
     const month = new Date().getMonth();
     const day = new Date().getDay();
