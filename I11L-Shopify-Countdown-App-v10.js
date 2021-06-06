@@ -240,11 +240,22 @@ let config = {
 
 let shop = "";
 shop = Shopify.shop;
+
+function decideIfCountdownShouldBeShownOrNot(){
+  const startTime = config.startTime;
+  const endTime = config.endTime;
+  const countdownIsActive = config.countdownIsActive;
+  if(countdownIsActive && endTime > Date.now() && Date.now() > startTime){
+    TimerRef.style.display = "grid";
+  }
+  
+}
+
 fetch('https://firestore.googleapis.com/v1/projects/i11l-software/databases/(default)/documents/Countdown-Configuration/'+shop)
   .then(response => response.json())
   .then(data => {
     applyConfigurationForCountdownApp(data);
-    TimerRef.style.display = "grid";
+    decideIfCountdownShouldBeShownOrNot();
     applyConfigurations();
     
   });
@@ -375,6 +386,7 @@ function applySizeSchema() {
 }
 function startTimer(){
   setInterval(function () {
+    decideIfCountdownShouldBeShownOrNot();
     const year = new Date().getFullYear();
     const month = new Date().getMonth();
     const day = new Date().getDay();
