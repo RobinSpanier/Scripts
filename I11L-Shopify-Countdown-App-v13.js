@@ -71,6 +71,7 @@
           font-weight: 650;
       }
       .buyNowBtn {
+          cursor: default;
           border: none;
           color: inherit;
           background: none;
@@ -273,7 +274,7 @@
   }
 
 
-
+  document.getElementById("Timer").innerHTML = '';
   document.getElementById("Timer").insertAdjacentHTML('beforeend', "<div class='message' id='Message'>Special offer ends soon!</div>");
   document.getElementById("Timer").insertAdjacentHTML('beforeend', "<div><div class='days'><div class='numbers' id='TimerDays'>0</div><span id='DaysText'>days</span></div><div class='hours'><div class='numbers' id='TimerHours'>0</div><span id='HoursText'>hours</span></div><div class='minutes'><div class='numbers'  id='TimerMinutes'>0</div><span id='MinutesText'>minutes</span></div><div class='seconds'><div class='numbers' id='TimerSeconds'>0</div><span id='SecondsText'>seconds</span></div></div>");
   document.getElementById("Timer").insertAdjacentHTML('beforeend', "<div><button class='buyNowBtn animated tada' id='BuyNowButton'>Buy Now</button></div>");
